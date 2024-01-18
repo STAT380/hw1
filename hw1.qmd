@@ -117,42 +117,27 @@ my_vec <- c(
 my_vec
 ```
 
-```{R}
-# Part 1
-# What data type does the vector contain?
-#   - character data type
-
-```
-
-```{R}
-# Part 2
-my_vec_double <- as.numeric(my_vec)
-
-my_vec_int <- as.integer(round(as.numeric(my_vec)))
-print(my_vec_double)
-print(my_vec_int)
-```
-
-```{R}
-# Part 3
-my_vec_bool <- my_vec_double <= 0
-print(my_vec_bool)
-# 4 elements of my_vec_double are greater than zero
-
-```
-
-```{R}
-# Part 4
-my_vec_double_sorted <- sort(my_vec_double)
-my_vec_double_sorted
-```
-
 For the following questions, provide your answers in a code cell.
 
 1.  What data type does the vector contain?
 
+    ```{R}
+    # Part 1
+    # What data type does the vector contain?
+    #   - character data type
+    ```
+
 2.  Create two new vectors called `my_vec_double` and `my_vec_int` which
     converts `my_vec` to Double & Integer types, respectively,
+
+    ```{R}
+    # Part 2
+    my_vec_double <- as.numeric(my_vec)
+
+    my_vec_int <- as.integer(round(as.numeric(my_vec)))
+    print(my_vec_double)
+    print(my_vec_int)
+    ```
 
 3.  Create a new vector `my_vec_bool` which comprises of:
 
@@ -161,7 +146,20 @@ For the following questions, provide your answers in a code cell.
 
     How many elements of `my_vec_double` are greater than zero?
 
+    ```{R}
+    # Part 3
+    my_vec_bool <- my_vec_double <= 0
+    print(my_vec_bool)
+    # 4 elements of my_vec_double are greater than zero
+    ```
+
 4.  Sort the values of `my_vec_double` in ascending order.
+
+```{R}
+# Part 4
+my_vec_double_sorted <- sort(my_vec_double)
+my_vec_double_sorted
+```
 
 <br><br><br><br> <br><br><br><br> ---
 
