@@ -1,17 +1,15 @@
 ---
 title: "Homework 1"
-author: "[Insert your name here]{style='background-color: yellow;'}"
+author: "[Surya Maddali]{style='background-color: yellow;'}"
 toc: true
 title-block-banner: true
 title-block-style: default
-format: html
-#format: pdf
+format: pdf
 ---
 
 [Link to the Github repository](https://github.com/STAT380/hw1.git)
 
 ---
-
 ::: {.callout-important}
 ## Due: Fri, Jan 26, 2024 @ 11:59pm
 
@@ -106,15 +104,58 @@ For the following questions, provide your answers in a code cell.
 
 1. What data type does the vector contain?
 
+```{R}
+"It contains character data"
+
+```
+
+
 1. Create two new vectors called `my_vec_double` and `my_vec_int` which converts `my_vec` to Double & Integer types, respectively, 
+
+```{R}
+
+my_vec_double <- as.double(my_vec)
+
+my_vec_int <- as.integer(my_vec)
+
+```
+
 
 1. Create a new vector `my_vec_bool` which comprises of:
     * ```r TRUE```if an element in `my_vec_double` is $\le 0$
     * ```r FALSE``` if an element in `my_vec_double` is $\ge 0$
 
+```{R}
+my_vec_bool <- c()
+for (x in 1:length(my_vec_double)) {
+  if (my_vec_double[x] > 0) {
+    my_vec_bool[x] <- TRUE
+  }
+  else {
+    my_vec_bool[x] <- FALSE
+  }
+}
+
+print(my_vec_bool)
+```
+
+
     How many elements of `my_vec_double` are greater than zero?
+    
+```{R}
+# Four
+
+
+```
+    
 
 1. Sort the values of `my_vec_double` in ascending order. 
+```{R}
+
+sort(my_vec_double, decreasing=FALSE)
+
+
+```
 
 
 <br><br><br><br>
@@ -147,6 +188,22 @@ $$
 
 Recall the discussion in class on how `R` fills in matrices
 :::
+
+```{R}
+
+library(purrr)
+
+matrix(c(1:9), nrow=3, ncol=3, byrow = TRUE)
+
+r1 <- c(1:100)
+r2 <- r1^2
+
+matrix(c(r1, r2), nrow = 2, ncol = 100, byrow=TRUE)
+
+
+```
+
+
 
 In the next part, we will discover how knowledge of the way in which a matrix is stored in memory can inform better code choices. To this end, the following function takes an input $n$ and creates an $n \times n$ matrix with random entries. 
 
