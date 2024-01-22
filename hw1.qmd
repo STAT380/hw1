@@ -5,7 +5,7 @@ toc: true
 title-block-banner: true
 title-block-style: default
 format: html
-format: pdf
+#format: pdf
 ---
 
 [Link to the Github repository](https://github.com/STAT380/hw1.git)
@@ -106,7 +106,9 @@ my_vec <- c(
 For the following questions, provide your answers in a code cell.
 
 1. What data type does the vector contain?
-It contains character data
+```{R}
+# It contains character data
+```
 
 1. Create two new vectors called `my_vec_double` and `my_vec_int` which converts `my_vec` to Double & Integer types, respectively, 
 ```{R}
@@ -120,13 +122,25 @@ my_vec_int <- as.integer(my_vec)
     * ```r TRUE```if an element in `my_vec_double` is $\le 0$
     * ```r FALSE``` if an element in `my_vec_double` is $\ge 0$
 ```{R}
-my_vec_bool
+my_vec_bool <- c() 
+for (x in 1:length(my_vec_double)) {
+  if (my_vec_double[x]>0) {
+    my_vec_bool[x] <- T
+  }
+  else {
+    my_vec_bool[x] <- F
+  }
+}
+
 ```
 
 
 
     How many elements of `my_vec_double` are greater than zero?
-4
+```{R}
+# 4
+```
+
 
 1. Sort the values of `my_vec_double` in ascending order. 
 ```{R}
@@ -161,6 +175,30 @@ $$
 $$
 
 ::: {.callout-warning}
+```{R}
+A <- matrix(
+  c(1,2,3,4,5,6,7,8,9),
+  nrow=3,
+  ncol=3,
+  byrow=T
+)
+
+A
+```
+
+```{R}
+row1 <- c(1:100)
+row2 <- row1^2
+B <- matrix(
+  c(row1,row2),
+  nrow=2,
+  ncol=length(row1),
+  byrow=T
+)
+
+B
+```
+
 ## Tip
 
 Recall the discussion in class on how `R` fills in matrices
@@ -194,18 +232,20 @@ mean(M)
 ```
 
 
+
 2. Write a function `row_wise_scan` which scans the entries of `M` one row after another and outputs the number of elements whose value is $\ge 0$. You can use the following **starter code**
 
-```R
+```{R}
 row_wise_scan <- function(x){
     n <- nrow(x)
     m <- ncol(x)
 
     # Insert your code here
+    
     count <- 0
-    for(...){
-        for(...){
-            if(...){
+    for(i in 1:n){
+        for(j in 1:m){
+            if(x[i,j]>0){
                 count <- count + 1 
             }
         }
@@ -213,46 +253,69 @@ row_wise_scan <- function(x){
 
     return(count)
 }
+
+row_wise_scan(M)
 ```
 
 
 3. Similarly, write a function `col_wise_scan` which does exactly the same thing but scans the entries of `M` one column after another
 
-```R
+```{R}
 col_wise_scan <- function(x){
     count <- 0
+    n <- nrow(x)
+    m <- ncol(x)
+
+    # Insert your code here
     
-    ... # Insert your code here
+   
+    for(j in 1:n){
+        for(i in 1:m){
+            if(x[i,j]>0){
+                count <- count + 1 
+            }
+        }
+    }    
+   
 
     return(count)
 }
+
+
 ```
 You can check if your code is doing what it's supposed to using the function here[^footnote]
 
 4. Between `col_wise_scan` and `row_wise_scan`, which function do you expect to take shorter to run? Why?
 
+
 5. Write a function `time_scan` which takes in a method `f` and a matrix `M` and outputs the amount of time taken to run `f(M)`
 
-```R
-time_scan <- function(f, M){
-    initial_time <- ... # Write your code here
-    f(M)
-    final_time <- ...  # Write your code here
+```{R}
+time_scan <- function(f, m){
+    initial_time <- Sys.time() # Write your code here
+    f(m)
+    final_time <- Sys.time()  # Write your code here
     
     total_time_taken <- final_time - initial_time
     return(total_time_taken)
 }
+
+
 ```
 
 Provide your output to
 
-```R
+```{R}
 list(
     row_wise_time = time_scan(row_wise_scan, M),
     col_wise_time = time_scan(row_wise_scan, M)
 )
 ```
 Which took longer to run? 
+```{R}
+# row_wwise_time
+```
+
 
 6. Repeat this experiment now when:
     * `M` is a $100 \times 100$ matrix
