@@ -189,6 +189,22 @@ $$
 Recall the discussion in class on how `R` fills in matrices
 :::
 
+```{R}
+
+library(purrr)
+
+matrix(c(1:9), nrow=3, ncol=3, byrow = TRUE)
+
+r1 <- c(1:100)
+r2 <- r1^2
+
+matrix(c(r1, r2), nrow = 2, ncol = 100, byrow=TRUE)
+
+
+```
+
+
+
 In the next part, we will discover how knowledge of the way in which a matrix is stored in memory can inform better code choices. To this end, the following function takes an input $n$ and creates an $n \times n$ matrix with random entries. 
 
 ```{R}
