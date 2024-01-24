@@ -227,7 +227,7 @@ generate_matrix(4)
 Let `M` be a fixed $50 \times 50$ matrix
 
 ```{R}
-M <- generate_matrix(50)
+M <- generate_matrix(5000)
 mean(M)
 ```
 
@@ -281,12 +281,12 @@ col_wise_scan <- function(x){
     return(count)
 }
 
-
+col_wise_scan(M)
 ```
 You can check if your code is doing what it's supposed to using the function here[^footnote]
 
 4. Between `col_wise_scan` and `row_wise_scan`, which function do you expect to take shorter to run? Why?
-
+I expect col_wise_scan to be shorter because the function is iterating through a single vector rather than switching vectors every time.
 
 5. Write a function `time_scan` which takes in a method `f` and a matrix `M` and outputs the amount of time taken to run `f(M)`
 
@@ -313,7 +313,7 @@ list(
 ```
 Which took longer to run? 
 ```{R}
-# row_wise_time()
+# row_wise_scan()
 ```
 
 
@@ -323,6 +323,7 @@ Which took longer to run?
     * `M` is a $5000 \times 5000$ matrix
 
 What can you conclude?
+I can conclude that a column wise scan is going to be faster than a row wise scan.
 
 <br><br><br><br>
 <br><br><br><br>
@@ -338,7 +339,7 @@ sessionInfo()
 
 [^footnote]: If your code is right, the following code should evaluate to be `TRUE`
 
-    ```R
+    ```{R}
     sapply(1:100, function(i) {
         x <- generate_matrix(100)
         row_wise_scan(x) == col_wise_scan(x)
