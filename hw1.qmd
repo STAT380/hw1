@@ -34,8 +34,7 @@ Please read the instructions carefully before submitting your assignment.
 1. Remember to make sure all your code output is rendered properly before uploading your submission.
 
 
-⚠️ Please add your name to the the author information in the frontmatter before submitting your assignment. 
-:::
+
 
 JiaXi Li   
 ---
