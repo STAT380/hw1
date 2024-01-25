@@ -4,7 +4,7 @@ author: "[Madeleine Willson]{style='background-color: yellow;'}"
 toc: true
 title-block-banner: true
 title-block-style: default
-format: pdf
+format: html
 ---
 
 [Link to the Github repository](https://github.com/STAT380/hw1.git)
@@ -45,7 +45,6 @@ repository and submitting a *pull request*.
 
 ![](images/fork.png)
 
-> Provide a sensible name for your forked repository when prompted.
 
 2.  Clone your Github repository on your local machine
 
@@ -117,7 +116,8 @@ For the following questions, provide your answers in a code cell.
     ```{R}
     class(my_vec)
     ```
-It contains string data values.
+
+    It contains string data values.
 
 2.  Create two new vectors called `my_vec_double` and `my_vec_int` which
     converts `my_vec` to Double & Integer types, respectively,
@@ -125,7 +125,7 @@ It contains string data values.
     ```{R}
     my_vec_double <- as.double(my_vec)
     my_vec_int <- as.integer(my_vec)
-    
+
     my_vec_double
     ```
 
@@ -141,6 +141,7 @@ my_vec_bool <- my_vec_double <= 0
 my_vec_bool
 sum(my_vec_double > 0)
 ```
+
 Four elements are greater than zero.
 
 1.  Sort the values of `my_vec_double` in ascending order.
@@ -245,7 +246,6 @@ row_wise_scan <- function(x){
     n <- nrow(x)
     m <- ncol(x)
 
-    # Insert your code here
     count <- 0
     for(i in 1:n){
         for(j in 1:m){
@@ -259,9 +259,8 @@ row_wise_scan <- function(x){
     }
 ```
 
-3.    Similarly, write a function `col_wise_scan` which does exactly the
+3.  Similarly, write a function `col_wise_scan` which does exactly the
     same thing but scans the entries of `M` one column after another
-
 
 ```{R}
 col_wise_scan <- function(x){
@@ -286,15 +285,15 @@ col_wise_scan <- function(x){
 
 ```
 
-
 4.  Between `col_wise_scan` and `row_wise_scan`, which function do you
     expect to take shorter to run? Why?
 
-I expect col_wise_scan to be shorter because matrices are stored in a column major order.
-
+I expect col_wise_scan to be shorter because matrices are stored in a
+column major order.
 
 5.  Write a function `time_scan` which takes in a method `f` and a
-    matrix `M` and outputs the amount of time taken to run `f(M)`. Which took longer to run?
+    matrix `M` and outputs the amount of time taken to run `f(M)`. Which
+    took longer to run?
 
 ```{R}
 time_scan <- function(f, M){
@@ -340,16 +339,19 @@ for (size in matrix_sizes) {
 
 print(results)
 ```
-    ```
-    The row wise increases much faster than column wise does as matrix size increases.
+
+
+The row wise increases much faster than column wise does as matrix size increases.
+
 ```{R}
 sapply(1:100, function(i) {
         x <- generate_matrix(100)
         row_wise_scan(x) == col_wise_scan(x)
     }) %>% sum == 100
 ```
-    The row wise increases much faster than column wise does as matrix size increases.
 
+
+The row wise increases much faster than column wise does as matrix size increases.
 
 <br><br><br><br> <br><br><br><br> ---
 
