@@ -1,11 +1,11 @@
 ---
 title: "Homework 1"
-author: "[Insert your name here]{style='background-color: yellow;'}"
+author: "[Milo Schmitt]{style='background-color: yellow;'}"
 toc: true
 title-block-banner: true
 title-block-style: default
-format: html
-#format: pdf
+#format: html
+format: pdf
 ---
 
 [Link to the Github repository](https://github.com/STAT380/hw1.git)
@@ -15,7 +15,9 @@ format: html
 ::: {.callout-important}
 ## Due: Fri, Jan 26, 2024 @ 11:59pm
 
-
+```{R}
+library(dplyr)
+```
 
 Please read the instructions carefully before submitting your assignment. 
 
@@ -57,7 +59,7 @@ In this question, we will walk through the process of _forking_ a `git` reposito
 
 3. In order to activate the `R` environment for the homework, make sure you have `renv` installed beforehand. To activate the `renv` environment for this assignment, open an instance of the `R` console from within the directory and type
     
-    ```R
+    ```{R}
     renv::activate()
     ```
     Follow the instrutions in order to make sure that `renv` is configured correctly. 
