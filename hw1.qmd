@@ -4,8 +4,8 @@ author: "[Milo Schmitt]{style='background-color: yellow;'}"
 toc: true
 title-block-banner: true
 title-block-style: default
-#format: html
-format: pdf
+format: html
+#format: pdf
 ---
 
 [Link to the Github repository](https://github.com/STAT380/hw1.git)
@@ -166,6 +166,14 @@ $$
 
 Recall the discussion in class on how `R` fills in matrices
 :::
+
+```{R}
+
+matrix1 <- matrix(1:9, nrow=3, byrow=TRUE)
+
+matrix2 <- matrix(c(1:100, (1:100)^2), nrow=2, byrow=TRUE)
+
+```
 
 In the next part, we will discover how knowledge of the way in which a matrix is stored in memory can inform better code choices. To this end, the following function takes an input $n$ and creates an $n \times n$ matrix with random entries. 
 
