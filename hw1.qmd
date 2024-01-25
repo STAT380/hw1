@@ -259,32 +259,9 @@ row_wise_scan <- function(x){
     }
 ```
 
-3.  
-4.  Similarly, write a function `col_wise_scan` which does exactly the
+3.    Similarly, write a function `col_wise_scan` which does exactly the
     same thing but scans the entries of `M` one column after another
 
-``` r
-col_wise_scan <- function(x){
-    count <- 0
-    
-    ... # Insert your code here
-
-    return(count)
-}
-```
-
-You can check if your code is doing what it's supposed to using the
-function here[^1]
-
-[^1]: If your code is right, the following code should evaluate to be
-    `TRUE`
-
-    ``` r
-    sapply(1:100, function(i) {
-        x <- generate_matrix(100)
-        row_wise_scan(x) == col_wise_scan(x)
-    }) %>% sum == 100
-    ```
 
 ```{R}
 col_wise_scan <- function(x){
@@ -306,7 +283,9 @@ col_wise_scan <- function(x){
 
     return(count)
 }
+
 ```
+
 
 4.  Between `col_wise_scan` and `row_wise_scan`, which function do you
     expect to take shorter to run? Why?
@@ -314,30 +293,8 @@ col_wise_scan <- function(x){
 I expect col_wise_scan to be shorter because matrices are stored in a column major order.
 
 
-4.  Write a function `time_scan` which takes in a method `f` and a
-    matrix `M` and outputs the amount of time taken to run `f(M)`
-
-``` r
-time_scan <- function(f, M){
-    initial_time <- ... # Write your code here
-    f(M)
-    final_time <- ...  # Write your code here
-    
-    total_time_taken <- final_time - initial_time
-    return(total_time_taken)
-}
-```
-
-Provide your output to
-
-``` r
-list(
-    row_wise_time = time_scan(row_wise_scan, M),
-    col_wise_time = time_scan(row_wise_scan, M)
-)
-```
-
-Which took longer to run?
+5.  Write a function `time_scan` which takes in a method `f` and a
+    matrix `M` and outputs the amount of time taken to run `f(M)`. Which took longer to run?
 
 ```{R}
 time_scan <- function(f, M){
@@ -383,7 +340,15 @@ for (size in matrix_sizes) {
 
 print(results)
 ```
-We can conclude that the time differnece increases with size of the matrix. Additionally, row wise increases much faster than column wise does.
+    ```
+    The row wise increases much faster than column wise does as matrix size increases.
+```{R}
+sapply(1:100, function(i) {
+        x <- generate_matrix(100)
+        row_wise_scan(x) == col_wise_scan(x)
+    }) %>% sum == 100
+```
+    The row wise increases much faster than column wise does as matrix size increases.
 
 
 <br><br><br><br> <br><br><br><br> ---
