@@ -80,6 +80,15 @@ combine_data[, 1:10]
 ### 2.Write a function row_wise_scan which scans the entries of M one row after another and outputs the number of elements whose value is greater or equal to 0 You can use the following starter code
 
 ```{r}
+generate_matrix <- function(n){
+    return(
+        matrix(
+            rnorm(n^2),
+            nrow=n
+        )
+    )
+}
+
 M <- generate_matrix(50)
 mean(M)
 ```
