@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Stat 380 Hw 1</title>
+<title>Stat 380 Hw 1 by Andy Gao</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Stat 380 Hw 1</h1>
+<h1 class="title">Stat 380 Hw 1 by Andy Gao</h1>
 </div>
 
 
@@ -201,7 +201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">generate_matrix</span>(<span class="dv">50</span>)</span>
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(M)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.04052339</code></pre>
+<pre><code>[1] 0.01988284</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -223,7 +223,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="fu">row_wise_scan</span>(M) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1301</code></pre>
+<pre><code>[1] 1274</code></pre>
 </div>
 </div>
 </section>
@@ -248,7 +248,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="fu">col_wise_scan</span>(M) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1301</code></pre>
+<pre><code>[1] 1274</code></pre>
 </div>
 </div>
 </section>
@@ -275,10 +275,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$row_wise_time
-Time difference of 0.0001320839 secs
+Time difference of 0.000138998 secs
 
 $col_wise_time
-Time difference of 0.0001330376 secs</code></pre>
+Time difference of 0.0001308918 secs</code></pre>
 </div>
 </div>
 <p>It seems like row_wise_time takes longer to scan than</p>
@@ -298,10 +298,10 @@ Time difference of 0.0001330376 secs</code></pre>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$row_wise_time
-Time difference of 0.0004720688 secs
+Time difference of 0.0004961491 secs
 
 $col_wise_time
-Time difference of 0.0004739761 secs</code></pre>
+Time difference of 0.0004880428 secs</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -312,10 +312,10 @@ Time difference of 0.0004739761 secs</code></pre>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$row_wise_time
-Time difference of 0.05482483 secs
+Time difference of 0.05734897 secs
 
 $col_wise_time
-Time difference of 0.04943419 secs</code></pre>
+Time difference of 0.0509789 secs</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -326,10 +326,10 @@ Time difference of 0.04943419 secs</code></pre>
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$row_wise_time
-Time difference of 1.611995 secs
+Time difference of 1.56642 secs
 
 $col_wise_time
-Time difference of 1.283404 secs</code></pre>
+Time difference of 1.190941 secs</code></pre>
 </div>
 </div>
 <p>I can conclude that a matrix that has less rows and columns runs a lot faster but that is obvious, it seems like for every test col wise scan seems to be always faster</p>

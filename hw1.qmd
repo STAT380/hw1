@@ -1,6 +1,5 @@
 ---
-Name: "Andy Gao"
-title: "Stat 380 Hw 1"
+title: "Stat 380 Hw 1 by Andy Gao"
 format: html
 editor: visual
 ---
