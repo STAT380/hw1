@@ -1,0 +1,192 @@
+{
+  "metadata": {
+    "kernelspec": {
+      "name": "ir",
+      "display_name": "R",
+      "language": "R"
+    },
+    "language_info": {
+      "name": "R",
+      "codemirror_mode": "r",
+      "pygments_lexer": "r",
+      "mimetype": "text/x-r-source",
+      "file_extension": ".r",
+      "version": "4.0.5"
+    },
+    "kaggle": {
+      "accelerator": "none",
+      "dataSources": [],
+      "dockerImageVersionId": 30618,
+      "isInternetEnabled": false,
+      "language": "r",
+      "sourceType": "notebook",
+      "isGpuEnabled": false
+    },
+    "colab": {
+      "provenance": []
+    }
+  },
+  "nbformat_minor": 0,
+  "nbformat": 4,
+  "cells": [
+    {
+      "cell_type": "code",
+      "source": [
+        "# Given vector\n",
+        "my_vec <- c(\n",
+        "    \"+0.07\",\n",
+        "    \"-0.07\",\n",
+        "    \"+0.25\",\n",
+        "    \"-0.84\",\n",
+        "    \"+0.32\",\n",
+        "    \"-0.24\",\n",
+        "    \"-0.97\",\n",
+        "    \"-0.36\",\n",
+        "    \"+1.76\",\n",
+        "    \"-0.36\"\n",
+        ")\n",
+        "\n",
+        "# 1-- >What data type does the vector contain?\n",
+        "\n",
+        "#Sol -->\n",
+        "vec_type <- class(my_vec)\n",
+        "print(paste(\"The vector contains\", vec_type, \"data type.\"))\n"
+      ],
+      "metadata": {
+        "execution": {
+          "iopub.status.busy": "2024-01-26T19:48:53.783335Z",
+          "iopub.execute_input": "2024-01-26T19:48:53.785936Z",
+          "iopub.status.idle": "2024-01-26T19:48:53.937915Z"
+        },
+        "trusted": true,
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "9M70KdQpdAtz",
+        "outputId": "4c50275c-4173-4d30-e716-67820bef10aa"
+      },
+      "execution_count": 1,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[1] \"The vector contains character data type.\"\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 2 --> Create two new vectors called my_vec_double and my_vec_int which converts my_vec to Double & Integer types, respectively\n",
+        "\n",
+        "#sol -->\n",
+        "my_vec_double <- as.numeric(my_vec)\n",
+        "my_vec_int <- as.integer(my_vec_double)\n",
+        "\n",
+        "print(my_vec_double)\n",
+        "print(my_vec_int)"
+      ],
+      "metadata": {
+        "execution": {
+          "iopub.status.busy": "2024-01-26T19:51:51.057600Z",
+          "iopub.execute_input": "2024-01-26T19:51:51.059382Z",
+          "iopub.status.idle": "2024-01-26T19:51:51.082512Z"
+        },
+        "trusted": true,
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "V36wM5YjdAt1",
+        "outputId": "8c6e6c28-5ebf-48fb-ad26-7eb4192a65fc"
+      },
+      "execution_count": 2,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            " [1]  0.07 -0.07  0.25 -0.84  0.32 -0.24 -0.97 -0.36  1.76 -0.36\n",
+            " [1] 0 0 0 0 0 0 0 0 1 0\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 3 --> Create a new vector my_vec_bool which comprises of:\n",
+        "# TRUE if an element in my_vec_double is <= 0\n",
+        "# FALSE if an element in my_vec_double is >= 0\n",
+        "\n",
+        "# sol -->\n",
+        "my_vec_bool <- my_vec_double <= 0\n",
+        "print(my_vec_bool)\n",
+        "\n",
+        "# How many elements of my_vec_double are greater than zero?\n",
+        "\n",
+        "#sol -->\n",
+        "num_greater_zero <- length(my_vec_double[my_vec_double > 0])\n",
+        "print(paste(num_greater_zero, \"elements  are greater than zero.\"))"
+      ],
+      "metadata": {
+        "execution": {
+          "iopub.status.busy": "2024-01-26T19:51:55.024117Z",
+          "iopub.execute_input": "2024-01-26T19:51:55.025807Z",
+          "iopub.status.idle": "2024-01-26T19:51:55.056845Z"
+        },
+        "trusted": true,
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "JhtRsEQpdAt1",
+        "outputId": "5e492c0f-b06a-41a4-82ea-f937e4a596bd"
+      },
+      "execution_count": 3,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            " [1] FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE\n",
+            "[1] \"4 elements  are greater than zero.\"\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 4 --> Sort the values of my_vec_double in ascending order\n",
+        "my_vec_sorted <- sort(my_vec_double)\n",
+        "print(\"Values of my_vec_double are now sorted in ascending order:\")\n",
+        "print(my_vec_sorted)\n"
+      ],
+      "metadata": {
+        "execution": {
+          "iopub.status.busy": "2024-01-26T19:51:59.305043Z",
+          "iopub.execute_input": "2024-01-26T19:51:59.306779Z",
+          "iopub.status.idle": "2024-01-26T19:51:59.331892Z"
+        },
+        "trusted": true,
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Rx62Dv5-dAt2",
+        "outputId": "38ea349b-df16-450d-9610-09509716286f"
+      },
+      "execution_count": 4,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[1] \"Values of my_vec_double are now sorted in ascending order:\"\n",
+            " [1] -0.97 -0.84 -0.36 -0.36 -0.24 -0.07  0.07  0.25  0.32  1.76\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
