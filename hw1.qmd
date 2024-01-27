@@ -105,17 +105,32 @@ my_vec <- c(
 For the following questions, provide your answers in a code cell.
 
 1. What data type does the vector contain?
+```{R}
+"it contains character strings"
 
+```
 1. Create two new vectors called `my_vec_double` and `my_vec_int` which converts `my_vec` to Double & Integer types, respectively, 
+```{R}
+my_vec_double <- as.numeric(my_vec)
+my_vec_int <- as.integer(as.numeric(my_vec))
 
+```
 1. Create a new vector `my_vec_bool` which comprises of:
     * ```r TRUE```if an element in `my_vec_double` is $\le 0$
     * ```r FALSE``` if an element in `my_vec_double` is $\ge 0$
 
     How many elements of `my_vec_double` are greater than zero?
+```{R}
+my_vec_bool <- my_vec_double <= 0
+moreThanZero <- sum(my_vec_double > 0)
+
+```
 
 1. Sort the values of `my_vec_double` in ascending order. 
+```{R}
+my_vec_double <- sort(my_vec_double)
 
+```
 
 <br><br><br><br>
 <br><br><br><br>
@@ -141,7 +156,12 @@ $$
 1 & 4 & 9 & 16 & 25 & \dots & 10000\\
 \end{bmatrix}
 $$
-
+```{R}
+matrix_1 <- matrix(c(1, 4, 7, 2, 5, 8, 3, 6, 9), nrow = 3, byrow = TRUE)
+matrix_2 <- matrix(c(1:100, (1:100)^2), nrow = 2, byrow = TRUE)
+matrix_1
+matrix_2
+```
 ::: {.callout-warning}
 ## Tip
 
@@ -178,16 +198,16 @@ mean(M)
 
 2. Write a function `row_wise_scan` which scans the entries of `M` one row after another and outputs the number of elements whose value is $\ge 0$. You can use the following **starter code**
 
-```R
+```{R}
 row_wise_scan <- function(x){
     n <- nrow(x)
     m <- ncol(x)
 
     # Insert your code here
     count <- 0
-    for(...){
-        for(...){
-            if(...){
+    for(i in 1:n){
+        for(x in 1:m){
+            if(xy[i,x] >= 0){
                 count <- count + 1 
             }
         }
@@ -200,12 +220,16 @@ row_wise_scan <- function(x){
 
 3. Similarly, write a function `col_wise_scan` which does exactly the same thing but scans the entries of `M` one column after another
 
-```R
+```{R}
 col_wise_scan <- function(x){
     count <- 0
-    
-    ... # Insert your code here
-
+    n = nrow(x)
+    m = ncol(x)
+    for (i in 1:m)
+      for (x in 1:n)
+        if (y[x,i] >= 0)
+          count <- count + 1
+      
     return(count)
 }
 ```
