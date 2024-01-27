@@ -1,11 +1,11 @@
 ---
 title: "Homework 1"
-author: "[Insert your name here]{style='background-color: yellow;'}"
+author: "[Tisya Vaidya]{style='background-color: yellow;'}"
 toc: true
 title-block-banner: true
 title-block-style: default
-format: html
-#format: pdf
+#format: html
+format: pdf
 ---
 
 [Link to the Github repository](https://github.com/STAT380/hw1.git)
@@ -57,8 +57,11 @@ In this question, we will walk through the process of _forking_ a `git` reposito
 
 3. In order to activate the `R` environment for the homework, make sure you have `renv` installed beforehand. To activate the `renv` environment for this assignment, open an instance of the `R` console from within the directory and type
     
-    ```R
-    renv::activate()
+```{R}
+#install.packages("tidyverse")
+#install.packages("yaml")
+#install.packages("renv")
+renv::activate()
     ```
     Follow the instrutions in order to make sure that `renv` is configured correctly. 
 
@@ -105,17 +108,44 @@ my_vec <- c(
 For the following questions, provide your answers in a code cell.
 
 1. What data type does the vector contain?
+```{R}
+typeof(my_vec)
+```
 
 1. Create two new vectors called `my_vec_double` and `my_vec_int` which converts `my_vec` to Double & Integer types, respectively, 
+
+```{R}
+# Create a new vector of type double
+my_vec_double <- as.numeric(my_vec)
+my_vec_double
+
+# Create a new vector of type integer
+my_vec_int <- as.integer(my_vec)
+my_vec_int
+```
 
 1. Create a new vector `my_vec_bool` which comprises of:
     * ```r TRUE```if an element in `my_vec_double` is $\le 0$
     * ```r FALSE``` if an element in `my_vec_double` is $\ge 0$
 
     How many elements of `my_vec_double` are greater than zero?
+```{R}
+# Convert to double type first
+my_vec_double <- as.numeric(my_vec)
 
+# Create a logical vector
+my_vec_bool <- my_vec_double <= 0
+
+# Count elements greater than zero
+sum(my_vec_double > 0)
+```
 1. Sort the values of `my_vec_double` in ascending order. 
 
+```{R}
+# Sort the vector
+sorted_vec <- sort(my_vec_double)
+sorted_vec
+```
 
 <br><br><br><br>
 <br><br><br><br>
@@ -141,7 +171,6 @@ $$
 1 & 4 & 9 & 16 & 25 & \dots & 10000\\
 \end{bmatrix}
 $$
-
 ::: {.callout-warning}
 ## Tip
 
@@ -175,19 +204,32 @@ M <- generate_matrix(50)
 mean(M)
 ```
 
+```{R}
+# Matrix 1: 3x3 Matrix
+matrix_1 <- matrix(1:9, nrow = 3, byrow = TRUE)
+
+# Generate Matrix 2 with the specified pattern
+matrix_2 <- matrix(c(1:100, (1:100)^2), nrow = 2, byrow= TRUE)
+
+
+# Display matrices
+print(matrix_1)
+print(matrix_2)
+```
 
 2. Write a function `row_wise_scan` which scans the entries of `M` one row after another and outputs the number of elements whose value is $\ge 0$. You can use the following **starter code**
 
-```R
+
+```{R}
 row_wise_scan <- function(x){
     n <- nrow(x)
     m <- ncol(x)
 
     # Insert your code here
     count <- 0
-    for(...){
-        for(...){
-            if(...){
+    for(i in 1:n){
+        for(j in 1:m){
+            if(x[i, j] >= 0){
                 count <- count + 1 
             }
         }
@@ -196,15 +238,22 @@ row_wise_scan <- function(x){
     return(count)
 }
 ```
-
-
 3. Similarly, write a function `col_wise_scan` which does exactly the same thing but scans the entries of `M` one column after another
 
-```R
+
+```{R}
 col_wise_scan <- function(x){
     count <- 0
-    
-    ... # Insert your code here
+    # Insert your code here
+    n <- nrow(x)
+    m <- ncol(x)
+    for(j in 1:m){
+        for(i in 1:n){
+            if(x[i, j] >= 0){
+                count <- count + 1 
+            }
+        }
+    } 
 
     return(count)
 }
@@ -213,28 +262,33 @@ You can check if your code is doing what it's supposed to using the function her
 
 4. Between `col_wise_scan` and `row_wise_scan`, which function do you expect to take shorter to run? Why?
 
+Expectation on Runtime:
+
+The row_wise_scan function is expected to run faster than col_wise_scan. This is because R stores matrices in a column-major order, so accessing elements column-wise results in better memory locality.
+
 5. Write a function `time_scan` which takes in a method `f` and a matrix `M` and outputs the amount of time taken to run `f(M)`
 
-```R
+
+```{R}
 time_scan <- function(f, M){
-    initial_time <- ... # Write your code here
+    initial_time <- Sys.time() # Write your code here
     f(M)
-    final_time <- ...  # Write your code here
+    final_time <- Sys.time()  # Write your code here
     
     total_time_taken <- final_time - initial_time
     return(total_time_taken)
 }
 ```
-
 Provide your output to
 
-```R
+```{R}
 list(
     row_wise_time = time_scan(row_wise_scan, M),
     col_wise_time = time_scan(row_wise_scan, M)
 )
 ```
 Which took longer to run? 
+row_wise function took longer to run
 
 6. Repeat this experiment now when:
     * `M` is a $100 \times 100$ matrix
@@ -242,6 +296,26 @@ Which took longer to run?
     * `M` is a $5000 \times 5000$ matrix
 
 What can you conclude?
+```{R}
+# Function to repeat experiment
+repeat_experiment <- function(n) {
+    M <- generate_matrix(n)
+    time_results <- list(
+        row_wise_time = time_scan(row_wise_scan, M),
+        col_wise_time = time_scan(col_wise_scan, M)
+    )
+    return(time_results)
+}
+
+# Experiment for different matrix sizes
+experiment_results <- list(
+    matrix_100 = repeat_experiment(100),
+    matrix_1000 = repeat_experiment(1000),
+    matrix_5000 = repeat_experiment(5000)
+)
+experiment_results
+```
+We can conclude that row_wise function takes longer to run than col_wise
 
 <br><br><br><br>
 <br><br><br><br>
@@ -257,7 +331,7 @@ sessionInfo()
 
 [^footnote]: If your code is right, the following code should evaluate to be `TRUE`
 
-    ```R
+    ```{R
     sapply(1:100, function(i) {
         x <- generate_matrix(100)
         row_wise_scan(x) == col_wise_scan(x)
