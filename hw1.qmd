@@ -25,10 +25,45 @@ my_vec <- c(
 ```
 
 ### 1. What data type does the vector contain?
+
 Floats
 
 ### 2. Create two new vectors called my_vec_double and my_vec_int which converts my_vec to Double & Integer types, respectively,
 
 ```{r}
-
+my_vec_double <- as.double(my_vec)
+my_vec_double
 ```
+
+```{r}
+my_vec_int <- as.integer(my_vec)
+my_vec_int
+```
+
+### 3. Create a new vector `my_vec_bool` which comprises of:
+
+-   `TRUE`if an element in `my_vec_double` is ≤0
+
+-   `FALSE` if an element in `my_vec_double` is ≥0
+
+How many elements of `my_vec_double` are greater than zero?
+
+```{r}
+i = 0
+my_vec_bool <- my_vec_double < i
+my_vec_bool
+```
+
+### 4. Sort the values of my_vec_double in ascending order.
+
+library(dplyr)
+
+```{r}
+sort(my_vec_double)
+```
+
+## Question 3
+
+### 1. Provide R code to construct the following matrices
+
+
