@@ -66,4 +66,120 @@ sort(my_vec_double)
 
 ### 1. Provide R code to construct the following matrices
 
+```{r}
+matrix(1:9, nrow=3, byrow=TRUE)
+```
 
+```{r}
+data1 <- matrix(seq(1, 100), nrow=1, byrow=TRUE)
+data2 <- matrix((1:100)^2, nrow=1, byrow=TRUE)
+combine_data <- rbind(data1,data2)
+combine_data[, 1:10]
+```
+
+### 2.Write a function row_wise_scan which scans the entries of M one row after another and outputs the number of elements whose value is greater or equal to 0 You can use the following starter code
+
+```{r}
+M <- generate_matrix(50)
+mean(M)
+```
+
+```{r}
+row_wise_scan <- function(x){
+    n <- nrow(x)
+    m <- ncol(x)
+
+    # Insert your code here
+    count <- 0
+    for (i in 1:n) {
+        for (j in 1:m) {
+            if (x[i, j] >= 0) {
+                count <- count + 1
+            }
+        }
+    }
+
+    return(count)
+}
+row_wise_scan(M) 
+```
+
+### 3. Similarly, write a function col_wise_scan which does exactly the same thing but scans the entries of M one column after another
+
+```{r}
+col_wise_scan <- function(x){
+    n <- nrow(x)
+    m <- ncol(x)
+
+    # Insert your code here
+    count <- 0
+    for (j in 1:m) {
+        for (i in 1:n) {
+            if (x[i, j] >= 0) {
+                count <- count + 1
+            }
+        }
+    }
+
+    return(count)
+}
+col_wise_scan(M) 
+```
+
+### 4. Between col_wise_scan and row_wise_scan, which function do you expect to take shorter to run? Why?
+
+col_wise_scan should be faster because the data is stored in a column major order so going from one to the other would be much faster because of the elements are stored next to each other in a column
+
+### 5. Write a function time_scan which takes in a method f and a matrix M and outputs the amount of time taken to run f(M)
+
+```{r}
+time_scan <- function(f, M){
+    initial_time <- Sys.time()
+    f(M)
+    final_time <- Sys.time()
+    
+    total_time_taken <- final_time - initial_time
+    return(total_time_taken)
+
+}
+
+list(
+    row_wise_time = time_scan(row_wise_scan, M),
+    col_wise_time = time_scan(col_wise_scan, M)
+)
+
+```
+
+It seems like row_wise_time takes longer to scan than
+
+### 6. Repeat this experiment now when:
+
+-   M is a 100x100 matrix
+-   M is a 1000x1000 matrix
+-   M is a 5000x5000 matrix
+
+```{r}
+M <- generate_matrix(100)
+list(
+    row_wise_time = time_scan(row_wise_scan, M),
+    col_wise_time = time_scan(col_wise_scan, M)
+)
+```
+
+```{r}
+M <- generate_matrix(1000)
+list(
+    row_wise_time = time_scan(row_wise_scan, M),
+    col_wise_time = time_scan(col_wise_scan, M)
+)
+```
+
+```{r}
+M <- generate_matrix(5000)
+list(
+    row_wise_time = time_scan(row_wise_scan, M),
+    col_wise_time = time_scan(col_wise_scan, M)
+)
+```
+
+I can conclude that a matrix that has less rows and columns runs a lot faster but that is obvious, it seems like for every test col wise scan seems to be always faster
